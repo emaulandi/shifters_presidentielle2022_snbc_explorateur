@@ -12,7 +12,7 @@ const Heatmap = () => {
 
   return (
     <Box>
-      {snbcData.map(({ couverture, lien }) => (
+      {snbcData.map(({ candidat, thematique, couverture, lien }) => (
         <Bloc
           key={`${thematique}-${candidat}`}
           color={couverturesColor[couverture]}
