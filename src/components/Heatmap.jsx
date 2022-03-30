@@ -10,7 +10,7 @@ import { couverturesColor, candidats, thematiques } from '../config';
 
 const Heatmap = () => {
   const snbcData = data.map(([thematique, candidat, couverture, lien]) => ({ thematique, candidat, couverture, lien }));
-  console.log(snbcData);
+  
 
   const [selectedCouvertures, setCouvertures] = React.useState(() => Object.keys(couverturesColor));
 
@@ -18,7 +18,10 @@ const Heatmap = () => {
     setCouvertures(newCouvertures);
   };
 
-  console.log(selectedCouvertures);
+  // which candidat & thematique have those selected couverture ?
+  const filteredData = snbcData.filter(({ couverture }) => selectedCouvertures.includes(couverture));
+  const filteredCandidat = [...new Set(filteredData.map(({ candidat }) => candidat))];
+  const filteredThematique = [...new Set(filteredData.map(({ thematique }) => thematique))];
 
   return (
     <Box>
@@ -28,19 +31,39 @@ const Heatmap = () => {
       />
 
       <Grid container>
-        {candidats.map(candidat => (<Typography key={candidat}>{candidat}</Typography>))}
+        {candidats.map(candidat => (
+          <Typography
+            key={candidat}
+            sx={{
+              opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
+            }}
+          >
+            {candidat}
+          </Typography>
+        ))}
       </Grid>
-      <Grid container>
-        {thematiques.map(thematique => (<Typography key={thematique}>{thematique}</Typography>))}
+      <Grid container direction="column">
+        {thematiques.map(thematique => (
+          <Typography
+            key={thematique}
+            sx={{
+              opacity: filteredThematique.includes(thematique) ? 1 : 0.2,
+            }}
+          >
+            {thematique}
+          </Typography>
+        ))}
       </Grid>
-      <Grid container>
+      <Grid container spacing={1} columns={12}>
         {snbcData.map(({ candidat, thematique, couverture, lien }) => (
-          <Bloc
-            key={`${thematique}-${candidat}`}
-            color={couverturesColor[couverture]}
-            link={lien}
-            opacity={selectedCouvertures.includes(couverture) ? 1 : 0.2}
-          />
+          <Grid item xs= {1}>
+            <Bloc
+              key={`${thematique}-${candidat}`}
+              color={couverturesColor[couverture]}
+              link={lien}
+              opacity={selectedCouvertures.includes(couverture) ? 1 : 0.2}
+            />
+          </Grid>
         ))}
       </Grid>
     </Box>
