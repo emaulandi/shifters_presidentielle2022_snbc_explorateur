@@ -1,5 +1,6 @@
 import React from 'react'
 import { ToggleButtonGroup, ToggleButton } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 import { couverturesColor } from '../config';
 
@@ -14,6 +15,12 @@ const CouvertureToggle = ({ selectedCouvertures, handlesetCouvertures }) => {
         <ToggleButton
           key={`button-${couverture}`}
           value={couverture}
+          sx={{
+            '&.Mui-selected': {
+              color: 'white',
+              backgroundColor: couverturesColor[couverture],
+            },
+          }}
         >
           {couverture}
         </ToggleButton>

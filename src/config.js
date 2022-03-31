@@ -28,7 +28,7 @@ export const thematiques = [
   'Recherche & Innovation',
   'Urbanisme & aménagement',
   'Education, sensibilisation',
-  'Emploi,formation',
+  'Emploi, formation',
   'Transports',
   'Bâtiments',
   'Agriculture',  

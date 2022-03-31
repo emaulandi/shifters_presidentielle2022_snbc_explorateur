@@ -29,42 +29,47 @@ const Heatmap = () => {
         selectedCouvertures={selectedCouvertures}
         handlesetCouvertures={handlesetCouvertures}
       />
-
       <Grid container>
-        {candidats.map(candidat => (
-          <Typography
-            key={candidat}
-            sx={{
-              opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
-            }}
-          >
-            {candidat}
-          </Typography>
-        ))}
-      </Grid>
-      <Grid container direction="column">
-        {thematiques.map(thematique => (
-          <Typography
-            key={thematique}
-            sx={{
-              opacity: filteredThematique.includes(thematique) ? 1 : 0.2,
-            }}
-          >
-            {thematique}
-          </Typography>
-        ))}
-      </Grid>
-      <Grid container spacing={1} columns={12}>
-        {snbcData.map(({ candidat, thematique, couverture, lien }) => (
-          <Grid item xs= {1}>
-            <Bloc
-              key={`${thematique}-${candidat}`}
-              color={couverturesColor[couverture]}
-              link={lien}
-              opacity={selectedCouvertures.includes(couverture) ? 1 : 0.2}
-            />
+        <Grid container item xs={12}>
+          <Grid item xs={8} container>
+            {candidats.map(candidat => (
+              <Typography
+                key={candidat}
+                sx={{
+                  opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
+                  transform: 'rotate(-50deg)',
+                  width: 30,
+                }}
+              >
+                {candidat}
+              </Typography>
+            ))}
           </Grid>
-        ))}
+        </Grid>
+        <Grid item xs={4} container direction="column">
+          {thematiques.map(thematique => (
+            <Typography
+              key={thematique}
+              sx={{
+                opacity: filteredThematique.includes(thematique) ? 1 : 0.2,
+              }}
+            >
+              {thematique}
+            </Typography>
+          ))}
+        </Grid>
+        <Grid item xs={8} container spacing={1} columns={12}>
+          {snbcData.map(({ candidat, thematique, couverture, lien }) => (
+            <Grid item xs= {1}>
+              <Bloc
+                key={`${thematique}-${candidat}`}
+                color={couverturesColor[couverture]}
+                link={lien}
+                opacity={selectedCouvertures.includes(couverture) ? 1 : 0.2}
+              />
+            </Grid>
+          ))}
+        </Grid>
       </Grid>
     </Box>
   )
