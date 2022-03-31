@@ -7,18 +7,18 @@ export const couverturesColor = {
 };
 
 export const candidats = [
-  'Arthaud',
-  'Dupont Aignan',
-  'Hidalgo',
-  'Jadot',
-  'Lassalle',
-  'Le Pen',
-  'Macron',
-  'Mélenchon',
-  'Pécresse',
-  'Poutou',
-  'Roussel',
-  'Zemmour',
+  { label : 'Arthaud', link : 'https://presidentielle2022.theshifters.org/nathalie-arthaud/'},
+  { label : 'Dupont Aignan', link : 'https://presidentielle2022.theshifters.org/nicolas-dupont-aignan/'},
+  { label : 'Hidalgo', link : 'https://presidentielle2022.theshifters.org/anne-hidalgo/'},
+  { label : 'Jadot', link : 'https://presidentielle2022.theshifters.org/yannick-jadot/'},
+  { label : 'Lassalle', link : 'https://presidentielle2022.theshifters.org/jean-lassalle/'},
+  { label : 'Le Pen', link : 'https://presidentielle2022.theshifters.org/marine-le-pen/'},
+  { label : 'Macron', link : 'https://presidentielle2022.theshifters.org/emmanuel-macron/'},
+  { label : 'Mélenchon', link : 'https://presidentielle2022.theshifters.org/jean-luc-melenchon/'},
+  { label : 'Pécresse', link : 'https://presidentielle2022.theshifters.org/valerie-pecresse/'},
+  { label : 'Poutou', link : 'https://presidentielle2022.theshifters.org/philippe-poutou/'},
+  { label : 'Roussel', link : 'https://presidentielle2022.theshifters.org/fabien-roussel/'},
+  { label : 'Zemmour', link : 'https://presidentielle2022.theshifters.org/eric-zemmour/'},
 ];
 
 export const thematiques = [
@@ -31,7 +31,7 @@ export const thematiques = [
   'Emploi, formation',
   'Transports',
   'Bâtiments',
-  'Agriculture',  
+  'Agriculture',
   'Foret-bois',
   'Industrie',
   'Production d\'énergie',
