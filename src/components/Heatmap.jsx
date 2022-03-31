@@ -4,7 +4,7 @@ import data from '/public/snbc_melted.csv';
 import { Box, Grid, Typography, Link } from '@mui/material';
 import { OpenInNew } from '@mui/icons-material';
 
-import Bloc from './Bloc';
+import Row from './Row';
 import CouvertureToggle from './CouvertureToggle';
 
 import { couverturesColor, candidats, thematiques } from '../config';
@@ -30,56 +30,43 @@ const Heatmap = () => {
         selectedCouvertures={selectedCouvertures}
         handlesetCouvertures={handlesetCouvertures}
       />
-      <Grid container>
-        <Grid container item xs={12}>
-          <Grid container item justifyContent="end" alignItems="flex-end">
-            {candidats.map(({ label: candidat, link }) => (
-              <Box>
-                
-                <Typography
-                  key={candidat}
-                  textAlign='right'
-                  noWrap
-                  sx={{
-                    opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
-                    writingMode: 'vertical-lr',
-                  }}
-                >
-                  {candidat}
-                </Typography>
-                <Link href={link} rel="noreferrer" target="_blank">
-                  <OpenInNew fontSize="small" />
-                </Link>
-              </Box>
-            ))}
-          </Grid>
-        </Grid>
-        <Grid item xs={4} container direction="column">
-          {thematiques.map(thematique => (
+      <Grid container item justifyContent="end" alignItems="flex-end">
+        {candidats.map(({ label: candidat, link }) => (
+          <Box>
             <Typography
-              key={thematique}
+              key={candidat}
               textAlign='right'
+              noWrap
               sx={{
-                opacity: filteredThematique.includes(thematique) ? 1 : 0.2,
+                opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
+                writingMode: 'vertical-lr',
               }}
             >
-              {thematique}
+              {candidat}
             </Typography>
-          ))}
+            <Link href={link} rel="noreferrer" target="_blank">
+              <OpenInNew fontSize="small" />
+            </Link>
+          </Box>
+        ))}
         </Grid>
-        <Grid item xs={8} container spacing={1} columns={12}>
-          {snbcData.map(({ candidat, thematique, couverture, lien }) => (
-            <Grid item xs= {1}>
-              <Bloc
-                key={`${thematique}-${candidat}`}
-                color={couverturesColor[couverture]}
-                link={lien}
-                opacity={selectedCouvertures.includes(couverture) ? 1 : 0.2}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>
+
+        <Box>
+          {thematiques.map(them => {
+            const data = snbcData.filter(({ thematique }) => thematique === them);
+            return (
+              <Grid item sx={{ pb: 1 }}>
+                <Row
+                  key={`row-${them}`}
+                  thematique={them}
+                  data={data}
+                  selectedCouvertures={selectedCouvertures}
+                  filteredThematique={filteredThematique}
+                />
+              </Grid>
+            )
+          })}
+        </Box>
     </Box>
   )
 }

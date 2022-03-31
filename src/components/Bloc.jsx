@@ -12,11 +12,18 @@ const Bloc = ({ color, link, opacity }) => {
       <Link href={link} rel="noreferrer" target="_blank">
         <Box
           sx={{
-            width: 25,
-            height: 25,
+            width: {
+              xs: 15,
+              sm: 25,
+            },
+            height: {
+              xs: 25,
+              sm: 25,
+            },
             backgroundColor: color,
             opacity,
-          }} />
+          }}
+        />
       </Link>
     </Box>
   )
