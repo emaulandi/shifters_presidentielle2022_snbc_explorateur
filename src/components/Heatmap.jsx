@@ -24,21 +24,22 @@ const Heatmap = () => {
   const filteredThematique = [...new Set(filteredData.map(({ thematique }) => thematique))];
 
   return (
-    <Box>
+    <Box sx={{ maxWidth: 600 }}>
       <CouvertureToggle
         selectedCouvertures={selectedCouvertures}
         handlesetCouvertures={handlesetCouvertures}
       />
       <Grid container>
         <Grid container item xs={12}>
-          <Grid item xs={8} container>
+          <Grid container item justifyContent="end">
             {candidats.map(candidat => (
               <Typography
                 key={candidat}
+                textAlign='right'
+                noWrap
                 sx={{
                   opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
-                  transform: 'rotate(-50deg)',
-                  width: 30,
+                  writingMode: 'vertical-lr',
                 }}
               >
                 {candidat}
@@ -50,6 +51,7 @@ const Heatmap = () => {
           {thematiques.map(thematique => (
             <Typography
               key={thematique}
+              textAlign='right'
               sx={{
                 opacity: filteredThematique.includes(thematique) ? 1 : 0.2,
               }}
