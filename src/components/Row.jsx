@@ -2,9 +2,29 @@ import React from 'react'
 import { Grid, Box, Typography } from '@mui/material';
 
 import Bloc from './Bloc';
-import { couverturesColor } from '../config';
+import { couverturesColor, thematiquesTitles } from '../config';
+
+const buildTitle = thematique => (
+  <Box sx={{ borderBottom: 'solid #b0b0b0 1px'}}>
+      <Typography
+        key={thematique}
+        textAlign='left'
+        noWrap
+        sx={{
+          fontWeight: 800,
+          mr: 1,
+        }}
+      >
+        {thematique}
+      </Typography>
+  </Box>
+);
 
 const Row = ({ thematique, data, selectedCouvertures, filteredThematique }) => {
+  if (thematiquesTitles.includes(thematique)) {
+    return buildTitle(thematique);
+  }
+
   return (
     <Grid container>
       <Grid item xs={4}>

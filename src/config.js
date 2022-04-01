@@ -21,7 +21,13 @@ export const candidats = [
   { label : 'Zemmour', link : 'https://presidentielle2022.theshifters.org/eric-zemmour/'},
 ];
 
+export const thematiquesTitles = [
+  'Gouverance & transverse',
+  'Secteurs',
+];
+
 export const thematiques = [
+  thematiquesTitles[0],
   'Gouvernance',
   'Empreinte Carbone',
   'Politique économique',
@@ -29,6 +35,7 @@ export const thematiques = [
   'Urbanisme & aménagement',
   'Education, sensibilisation',
   'Emploi, formation',
+  thematiquesTitles[1],
   'Transports',
   'Bâtiments',
   'Agriculture',
