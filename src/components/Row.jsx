@@ -14,6 +14,7 @@ const Row = ({ thematique, data, selectedCouvertures, filteredThematique }) => {
           noWrap
           sx={{
             opacity: filteredThematique.includes(thematique) ? 1 : 0.2,
+            mr: 1,
           }}
         >
           {thematique}
