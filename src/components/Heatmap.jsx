@@ -1,8 +1,7 @@
 import React from 'react'
 
 import data from '/public/snbc_melted.csv';
-import { Container, Box, Grid, Typography, Link, useMediaQuery } from '@mui/material';
-import { OpenInNew } from '@mui/icons-material';
+import { Container, Box, Grid, Typography, Link, useMediaQuery, Avatar } from '@mui/material';
 
 import Row from './Row';
 import CouvertureToggle from './CouvertureToggle';
@@ -44,20 +43,21 @@ const Heatmap = () => {
         <Grid container>
           <Grid item xs={4}></Grid>
           <Grid container item xs={8} justifyContent="space-around" alignItems="flex-end">
-            {candidats.map(({ label: candidat, link }) => (
+            {candidats.map(({ label: candidat, link, img }) => (
               <Box>
-                <Typography
-                  key={candidat}
-                  noWrap
-                  sx={{
-                    opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
-                    writingMode: 'vertical-lr',
-                  }}
-                >
-                  {candidat}
-                </Typography>
                 <Link href={link} rel="noreferrer" target="_blank">
-                  <OpenInNew fontSize="small" />
+                  <Typography
+                    key={candidat}
+                    noWrap
+                    sx={{
+                      opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
+                      writingMode: 'vertical-lr',
+                      mb: 1,
+                    }}
+                  >
+                    {candidat}
+                  </Typography>
+                  {!isSmallScreen && (<Avatar alt="" src={img} sx={{ width: 30, height: 30, opacity: filteredCandidat.includes(candidat) ? 1 : 0.2 }}/>)}
                 </Link>
               </Box>
             ))}
