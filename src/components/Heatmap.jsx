@@ -28,36 +28,40 @@ const Heatmap = () => {
   return (
     <Container maxWidth="sm" sx={{ m: 0 }}>
       <Box sx={{ maxWidth: 600 }}>
-        {isSmallScreen ? (
-          <CouvertureSelect
-            selectedCouvertures={selectedCouvertures}
-            handlesetCouvertures={handlesetCouvertures}
-          />
-        ): (
-          <CouvertureToggle
-            selectedCouvertures={selectedCouvertures}
-            handlesetCouvertures={handlesetCouvertures}
-          />
-        )}
-        <Grid container item justifyContent="end" alignItems="flex-end">
-          {candidats.map(({ label: candidat, link }) => (
-            <Box>
-              <Typography
-                key={candidat}
-                textAlign='right'
-                noWrap
-                sx={{
-                  opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
-                  writingMode: 'vertical-lr',
-                }}
-              >
-                {candidat}
-              </Typography>
-              <Link href={link} rel="noreferrer" target="_blank">
-                <OpenInNew fontSize="small" />
-              </Link>
-            </Box>
-          ))}
+        <Box sx={{ mb: 2 }}>
+          {isSmallScreen ? (
+            <CouvertureSelect
+              selectedCouvertures={selectedCouvertures}
+              handlesetCouvertures={handlesetCouvertures}
+            />
+          ): (
+            <CouvertureToggle
+              selectedCouvertures={selectedCouvertures}
+              handlesetCouvertures={handlesetCouvertures}
+            />
+          )}
+        </Box>
+        <Grid container>
+          <Grid item xs={4}></Grid>
+          <Grid container item xs={8} justifyContent="space-around" alignItems="flex-end">
+            {candidats.map(({ label: candidat, link }) => (
+              <Box>
+                <Typography
+                  key={candidat}
+                  noWrap
+                  sx={{
+                    opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
+                    writingMode: 'vertical-lr',
+                  }}
+                >
+                  {candidat}
+                </Typography>
+                <Link href={link} rel="noreferrer" target="_blank">
+                  <OpenInNew fontSize="small" />
+                </Link>
+              </Box>
+            ))}
+          </Grid>
           </Grid>
 
           <Box>

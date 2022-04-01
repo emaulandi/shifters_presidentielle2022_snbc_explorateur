@@ -2,6 +2,8 @@ import React from 'react'
 import { Box, Link } from '@mui/material';
 
 const Bloc = ({ color, link, opacity }) => {
+  const heatmapWidth = window.innerWidth * 0.6;
+  const blocWidth = heatmapWidth / 12 - 5;
 
   return (
     <Box
@@ -13,7 +15,7 @@ const Bloc = ({ color, link, opacity }) => {
         <Box
           sx={{
             width: {
-              xs: 15,
+              xs: blocWidth,
               sm: 25,
             },
             height: {

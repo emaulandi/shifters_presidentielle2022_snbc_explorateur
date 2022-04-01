@@ -19,7 +19,7 @@ const Row = ({ thematique, data, selectedCouvertures, filteredThematique }) => {
           {thematique}
         </Typography>
       </Grid>
-      <Grid xs={8} container item spacing={0.5}>
+      <Grid xs={8} container item justifyContent="space-between">
         {data.map(({ candidat, thematique, couverture, lien }) => (
           <Grid item key={`${thematique}-${candidat}`}>
             <Bloc
