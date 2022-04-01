@@ -41,11 +41,13 @@ const Row = ({ thematique, data, selectedCouvertures, filteredThematique }) => {
         </Typography>
       </Grid>
       <Grid xs={8} container item justifyContent="space-between">
-        {data.map(({ candidat, thematique, couverture, lien }) => (
+        {data.map(({ candidat, thematique, couverture }) => (
           <Grid item key={`${thematique}-${candidat}`}>
             <Bloc
               color={couverturesColor[couverture]}
-              link={lien}
+              candidat={candidat}
+              thematique={thematique}
+              couverture={couverture}
               opacity={selectedCouvertures.includes(couverture) ? 1 : 0.2}
             />
           </Grid>
