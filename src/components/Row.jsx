@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid, Box, Typography, useMediaQuery } from '@mui/material';
 
 import Bloc from './Bloc';
+import BlocSmall from './BlocSmall';
 import { couverturesColor, thematiquesTitles } from '../config';
 
 const buildTitle = thematique => (
@@ -29,30 +30,44 @@ const Row = ({ thematique, data, selectedCouvertures, filteredThematique }) => {
 
   return (
     <Grid container>
-      <Grid item xs={4}>
+      <Grid item xs={isSmallScreen ? 12 : 4}>
         <Typography
           key={thematique}
-          textAlign='right'
+          textAlign={isSmallScreen ?  'left' :'right'}
           noWrap
           sx={{
             opacity: filteredThematique.includes(thematique) ? 1 : 0.2,
             mr: 1,
-            fontSize: isSmallScreen ? 12 : 14,
           }}
         >
           {thematique}
         </Typography>
       </Grid>
-      <Grid xs={8} container item justifyContent={isSmallScreen ? "space-between" : "space-around"}>
+      <Grid
+        xs={isSmallScreen ? 12 : 8}
+        container item
+        justifyContent={isSmallScreen ? "flex-start" : "space-around"}
+        spacing={0.5}
+      >
         {data.map(({ candidat, thematique, couverture }) => (
           <Grid item key={`${thematique}-${candidat}`}>
-            <Bloc
-              color={couverturesColor[couverture]}
-              candidat={candidat}
-              thematique={thematique}
-              couverture={couverture}
-              opacity={selectedCouvertures.includes(couverture) ? 1 : 0.2}
-            />
+            {isSmallScreen ? (
+              <BlocSmall
+                color={couverturesColor[couverture]}
+                candidat={candidat}
+                thematique={thematique}
+                couverture={couverture}
+                opacity={selectedCouvertures.includes(couverture) ? 1 : 0.2}
+              />
+            ) : (
+              <Bloc
+                color={couverturesColor[couverture]}
+                candidat={candidat}
+                thematique={thematique}
+                couverture={couverture}
+                opacity={selectedCouvertures.includes(couverture) ? 1 : 0.2}
+              />
+            )}
           </Grid>
         ))}
       </Grid>

@@ -41,37 +41,37 @@ const Heatmap = () => {
           />
         )}
       </Box>
-      <Grid container>
-        <Grid item xs={4}></Grid>
-        <Grid container item xs={8} justifyContent={isSmallScreen ? "space-around" : "space-around"} alignItems="flex-end">
-          {candidats.map(({ label: candidat, link, img }) => (
-            <Box key={`box-${candidat}`}>
-              <Link key={`link-${candidat}`} href={link} rel="noreferrer" target="_blank">
-                <Typography
-                  key={`text-${candidat}`}
-                  noWrap
-                  sx={{
-                    opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
-                    writingMode: 'vertical-lr',
-                    mb: 1,
-                    fontSize: isSmallScreen ? 11 : 14,
-                  }}
-                >
-                  {candidat}
-                </Typography>
-                {!isSmallScreen && (
+      {!isSmallScreen && (
+        <Grid container>
+          <Grid item xs={4}></Grid>
+          <Grid container item xs={8} justifyContent="space-around" alignItems="flex-end">
+            {candidats.map(({ label: candidat, link, img }) => (
+              <Box key={`box-${candidat}`}>
+                <Link key={`link-${candidat}`} href={link} rel="noreferrer" target="_blank">
+                  <Typography
+                    key={`text-${candidat}`}
+                    noWrap
+                    sx={{
+                      opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
+                      writingMode: 'vertical-lr',
+                      mb: 1,
+                      fontSize: 14,
+                    }}
+                  >
+                    {candidat}
+                  </Typography>
                   <Avatar
                     key={`avatar-${candidat}`}
                     alt=""
                     src={img}
                     sx={{ width: 30, height: 30, opacity: filteredCandidat.includes(candidat) ? 1 : 0.2 }}
                   />
-                )}
-              </Link>
-            </Box>
-          ))}
+                </Link>
+              </Box>
+            ))}
+          </Grid>
         </Grid>
-      </Grid>
+      )}
 
       <Box>
         {thematiques.map(them => {
