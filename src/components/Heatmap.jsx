@@ -43,7 +43,7 @@ const Heatmap = () => {
       </Box>
       <Grid container>
         <Grid item xs={4}></Grid>
-        <Grid container item xs={8} justifyContent="space-around" alignItems="flex-end">
+        <Grid container item xs={8} justifyContent={isSmallScreen ? "space-around" : "space-around"} alignItems="flex-end">
           {candidats.map(({ label: candidat, link, img }) => (
             <Box key={`box-${candidat}`}>
               <Link key={`link-${candidat}`} href={link} rel="noreferrer" target="_blank">
@@ -54,6 +54,7 @@ const Heatmap = () => {
                     opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
                     writingMode: 'vertical-lr',
                     mb: 1,
+                    fontSize: isSmallScreen ? 11 : 14,
                   }}
                 >
                   {candidat}

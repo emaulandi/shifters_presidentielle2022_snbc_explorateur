@@ -6,7 +6,7 @@ let defaultTheme = responsiveFontSizes(createTheme({
   typography: {
     body2: {
       color: 'grey',
-      fontsize: "1rem",
+      fontSize: "1rem",
     },
     h5: {
       fontWeight: 900,
