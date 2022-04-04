@@ -6,6 +6,7 @@ import { Container, Box, Grid, Typography, Link, useMediaQuery, Avatar } from '@
 import Row from './Row';
 import CouvertureToggle from './CouvertureToggle';
 import CouvertureSelect from './CouvertureSelect';
+import Introduction from './Introduction';
 
 import { couverturesColor, candidats, thematiques } from '../config';
 
@@ -26,6 +27,7 @@ const Heatmap = () => {
 
   return (
     <Container maxWidth="sm" sx={{ m: 0 }}>
+      <Introduction />
       <Box sx={{ maxWidth: 600 }}>
         <Box sx={{ mb: 2 }}>
           {isSmallScreen ? (
