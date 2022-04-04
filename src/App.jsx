@@ -1,5 +1,6 @@
 import Heatmap from './components/Heatmap';
 import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
+import CssBaseline from '@mui/material/CssBaseline';
 
 let defaultTheme = responsiveFontSizes(createTheme({
   typography: {
@@ -24,6 +25,7 @@ let defaultTheme = responsiveFontSizes(createTheme({
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
       <Heatmap />
     </ThemeProvider>
   )

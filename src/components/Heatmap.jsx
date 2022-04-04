@@ -26,62 +26,67 @@ const Heatmap = () => {
   const filteredThematique = [...new Set(filteredData.map(({ thematique }) => thematique))];
 
   return (
-    <Container maxWidth="sm" sx={{ m: 0 }}>
+    <Container maxWidth="sm">
       <Introduction />
-      <Box sx={{ maxWidth: 600 }}>
-        <Box sx={{ mb: 2 }}>
-          {isSmallScreen ? (
-            <CouvertureSelect
-              selectedCouvertures={selectedCouvertures}
-              handlesetCouvertures={handlesetCouvertures}
-            />
-          ): (
-            <CouvertureToggle
-              selectedCouvertures={selectedCouvertures}
-              handlesetCouvertures={handlesetCouvertures}
-            />
-          )}
-        </Box>
-        <Grid container>
-          <Grid item xs={4}></Grid>
-          <Grid container item xs={8} justifyContent="space-around" alignItems="flex-end">
-            {candidats.map(({ label: candidat, link, img }) => (
-              <Box>
-                <Link href={link} rel="noreferrer" target="_blank">
-                  <Typography
-                    key={candidat}
-                    noWrap
-                    sx={{
-                      opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
-                      writingMode: 'vertical-lr',
-                      mb: 1,
-                    }}
-                  >
-                    {candidat}
-                  </Typography>
-                  {!isSmallScreen && (<Avatar alt="" src={img} sx={{ width: 30, height: 30, opacity: filteredCandidat.includes(candidat) ? 1 : 0.2 }}/>)}
-                </Link>
-              </Box>
-            ))}
-          </Grid>
-          </Grid>
-
-          <Box>
-            {thematiques.map(them => {
-              const data = snbcData.filter(({ thematique }) => thematique === them);
-              return (
-                <Grid item sx={{ pb: 1 }}>
-                  <Row
-                    key={`row-${them}`}
-                    thematique={them}
-                    data={data}
-                    selectedCouvertures={selectedCouvertures}
-                    filteredThematique={filteredThematique}
+      <Box sx={{ mb: 2 }}>
+        {isSmallScreen ? (
+          <CouvertureSelect
+            selectedCouvertures={selectedCouvertures}
+            handlesetCouvertures={handlesetCouvertures}
+          />
+        ): (
+          <CouvertureToggle
+            selectedCouvertures={selectedCouvertures}
+            handlesetCouvertures={handlesetCouvertures}
+          />
+        )}
+      </Box>
+      <Grid container>
+        <Grid item xs={4}></Grid>
+        <Grid container item xs={8} justifyContent="space-around" alignItems="flex-end">
+          {candidats.map(({ label: candidat, link, img }) => (
+            <Box key={`box-${candidat}`}>
+              <Link key={`link-${candidat}`} href={link} rel="noreferrer" target="_blank">
+                <Typography
+                  key={`text-${candidat}`}
+                  noWrap
+                  sx={{
+                    opacity: filteredCandidat.includes(candidat) ? 1 : 0.2,
+                    writingMode: 'vertical-lr',
+                    mb: 1,
+                  }}
+                >
+                  {candidat}
+                </Typography>
+                {!isSmallScreen && (
+                  <Avatar
+                    key={`avatar-${candidat}`}
+                    alt=""
+                    src={img}
+                    sx={{ width: 30, height: 30, opacity: filteredCandidat.includes(candidat) ? 1 : 0.2 }}
                   />
-                </Grid>
-              )
-            })}
-          </Box>
+                )}
+              </Link>
+            </Box>
+          ))}
+        </Grid>
+      </Grid>
+
+      <Box>
+        {thematiques.map(them => {
+          const data = snbcData.filter(({ thematique }) => thematique === them);
+          return (
+            <Grid item key={`griditem-${them}`} sx={{ pb: 1 }}>
+              <Row
+                key={`row-${them}`}
+                thematique={them}
+                data={data}
+                selectedCouvertures={selectedCouvertures}
+                filteredThematique={filteredThematique}
+              />
+            </Grid>
+          )
+        })}
       </Box>
     </Container>
   )
