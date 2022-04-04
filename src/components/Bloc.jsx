@@ -3,7 +3,7 @@ import { Grid, Avatar, Box, Typography } from '@mui/material';
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
-import { candidats } from '../config';
+import { candidats, couverturesColor } from '../config';
 
 const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -11,8 +11,8 @@ const HtmlTooltip = styled(({ className, ...props }) => (
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: '#f5f5f9',
     color: 'rgba(0, 0, 0, 0.87)',
-    maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
+    maxWidth: 200,
+    fontSize: theme.typography.pxToRem(16),
     border: '1px solid #dadde9',
   },
 }));
@@ -32,12 +32,13 @@ const Bloc = ({ color, opacity, candidat, thematique, couverture }) => {
       <HtmlTooltip
         title={
           <React.Fragment>
-            <Grid container spacing={2} alignItems="center">
+            <Grid container alignItems="center">
               <Avatar alt="" src={candidatImg} />
-              <Typography color="inherit">{candidat}</Typography>
+              <Typography sx={{ ml: 1 }} color="inherit">{candidat}</Typography>
             </Grid>
-            <Typography variant="caption" display="block" gutterBottom>{`Thématique: ${thematique}`}</Typography>
-            <Typography variant="caption" display="block" gutterBottom>{`Couverture: ${couverture}`}</Typography>
+            <Typography variant="caption" display="block" gutterBottom>
+            {thematique}: <span style={{ padding: 5, fontWeight: 'bold', color: 'white', backgroundColor: couverturesColor[couverture] }}>{couverture}</span> 
+            </Typography>
           </React.Fragment>
         }
       >
